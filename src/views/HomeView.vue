@@ -24,44 +24,6 @@ const decreaseCounter = () => counter.value--
 const increaseCounter = () => counter.value++
 </script>
 
-<!-- <script>
-import { ref } from 'vue'
-
-export default {
-  setup() {
-    const counter = ref(0)
-
-    const decreaseCounter = () => counter.value--
-
-    const increaseCounter = () => counter.value++
-
-    return {
-      counter,
-      decreaseCounter,
-      increaseCounter
-    }
-  }
-}
-</script> -->
-
-<!-- <script>
-export default {
-  data() {
-    return {
-      counter: 0
-    }
-  },
-  methods: {
-    decreaseCounter() {
-      this.counter--
-    },
-    increaseCounter() {
-      this.counter++
-    }
-  }
-}
-</script> -->
-
 <style>
 .home {
   text-align: center;
