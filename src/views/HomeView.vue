@@ -27,7 +27,7 @@ const increaseCounter = () => counterData.count++
   </div>
 </template>
 
-<style>
+<style scoped>
 .home {
   text-align: center;
   padding: 20px;

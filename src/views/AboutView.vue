@@ -9,7 +9,7 @@ import { vAutofocus } from '../directives'
   </div>
 </template>
 
-<style>
+<style scoped>
 .about {
   text-align: center;
   padding: 20px;
