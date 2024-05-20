@@ -15,6 +15,7 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { vAutofocus } from '../directives'
 
 const counterData = reactive({
   count: 0,
@@ -24,10 +25,6 @@ const counterData = reactive({
 const decreaseCounter = () => counterData.count--
 
 const increaseCounter = () => counterData.count++
-
-const vAutofocus = {
-  mounted: (el) => el.focus()
-}
 </script>
 
 <style>
