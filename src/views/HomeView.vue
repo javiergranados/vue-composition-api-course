@@ -1,3 +1,17 @@
+<script setup>
+import { reactive } from 'vue'
+import { vAutofocus } from '../directives'
+
+const counterData = reactive({
+  count: 0,
+  title: 'Example'
+})
+
+const decreaseCounter = () => counterData.count--
+
+const increaseCounter = () => counterData.count++
+</script>
+
 <template>
   <div class="home">
     <h3>My Counter: {{ counterData.title }}</h3>
@@ -12,20 +26,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { reactive } from 'vue'
-import { vAutofocus } from '../directives'
-
-const counterData = reactive({
-  count: 0,
-  title: 'Example'
-})
-
-const decreaseCounter = () => counterData.count--
-
-const increaseCounter = () => counterData.count++
-</script>
 
 <style>
 .home {
