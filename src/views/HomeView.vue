@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { nextTick, reactive, ref } from 'vue'
 import { vAutofocus } from '../directives'
 
 const counterData = reactive({
@@ -7,18 +7,36 @@ const counterData = reactive({
   title: 'Example'
 })
 
-const decreaseCounter = () => counterData.count--
+const isButtonDisabled = ref(false)
 
-const increaseCounter = () => counterData.count++
+const decreaseCounter = async () => {
+  isButtonDisabled.value = true
+  counterData.count--
+
+  await nextTick()
+  setTimeout(() => {
+    isButtonDisabled.value = false
+  }, 300)
+}
+
+const increaseCounter = async () => {
+  isButtonDisabled.value = true
+  counterData.count++
+
+  await nextTick()
+  setTimeout(() => {
+    isButtonDisabled.value = false
+  }, 300)
+}
 </script>
 
 <template>
   <div class="home">
     <h3>My Counter: {{ counterData.title }}</h3>
     <div>
-      <button @click="decreaseCounter" class="btn">-</button>
+      <button :disabled="isButtonDisabled" @click="decreaseCounter" class="btn">-</button>
       <span class="counter">{{ counterData.count }}</span>
-      <button @click="increaseCounter" class="btn">+</button>
+      <button :disabled="isButtonDisabled" @click="increaseCounter" class="btn">+</button>
     </div>
     <div class="edit">
       <h4>Edit counter title:</h4>
@@ -42,5 +60,9 @@ const increaseCounter = () => counterData.count++
 }
 .edit {
   margin-top: 60px;
+}
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>
