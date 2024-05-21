@@ -1,10 +1,20 @@
+<script setup>
+import { ref } from 'vue'
+
+const posts = ref([
+  { id: 1, title: 'Post 1' },
+  { id: 2, title: 'Post 2' },
+  { id: 3, title: 'Post 3' }
+])
+</script>
+
 <template>
   <div class="post-list">
     <h1>Post List</h1>
     <ul>
-      <li><RouterLink to="/post-list/1">Post 1</RouterLink></li>
-      <li><RouterLink to="/post-list/2">Post 2</RouterLink></li>
-      <li><RouterLink to="/post-list/3">Post 3</RouterLink></li>
+      <li v-for="post in posts" :key="post.id">
+        <RouterLink :to="`/post-list/${post.id}`">{{ post.title }}</RouterLink>
+      </li>
     </ul>
   </div>
 </template>
