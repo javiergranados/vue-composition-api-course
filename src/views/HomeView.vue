@@ -5,27 +5,29 @@
       <span style="color: green" v-if="isOnline">Online</span>
       <span v-else style="color: red">Offline</span>
     </div>
-    <h3>My Counter: {{ counterData.title }}</h3>
+    <h3>My Counter: {{ store.title }}</h3>
     <div>
-      <button :disabled="isButtonDisabled" @click="decreaseCounter" class="btn">-</button>
-      <span class="counter">{{ counterData.count }}</span>
-      <button :disabled="isButtonDisabled" @click="increaseCounter" class="btn">+</button>
+      <button :disabled="store.isButtonDisabled" @click="store.decrement()" class="btn">-</button>
+      <span class="counter">{{ store.count }}</span>
+      <button @click="store.increment()" class="btn">+</button>
     </div>
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input type="text" v-model="counterData.title" v-autofocus />
+      <input type="text" v-model="store.title" v-autofocus />
     </div>
   </div>
 </template>
 
 <script setup>
-import { vAutofocus } from '../directives'
-import { useCounter } from '../composables'
+import { useCounterStore } from '@/stores/counter'
+// import { useCounter } from '../composables'
 import { useOnline } from '@vueuse/core'
+import { vAutofocus } from '../directives'
 
 const isOnline = useOnline()
 
-const { counterData, isButtonDisabled, decreaseCounter, increaseCounter } = useCounter()
+// const { counterData, isButtonDisabled, decreaseCounter, increaseCounter } = useCounter()
+const store = useCounterStore()
 </script>
 
 <style scoped>
