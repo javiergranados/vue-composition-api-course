@@ -1,3 +1,18 @@
+<template>
+  <div class="home">
+    <h3>My Counter: {{ counterData.title }}</h3>
+    <div>
+      <button :disabled="isButtonDisabled" @click="decreaseCounter" class="btn">-</button>
+      <span class="counter">{{ counterData.count }}</span>
+      <button :disabled="isButtonDisabled" @click="increaseCounter" class="btn">+</button>
+    </div>
+    <div class="edit">
+      <h4>Edit counter title:</h4>
+      <input type="text" v-model="counterData.title" v-autofocus />
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { nextTick, reactive, ref } from 'vue'
 import { vAutofocus } from '../directives'
@@ -29,21 +44,6 @@ const increaseCounter = async () => {
   }, 300)
 }
 </script>
-
-<template>
-  <div class="home">
-    <h3>My Counter: {{ counterData.title }}</h3>
-    <div>
-      <button :disabled="isButtonDisabled" @click="decreaseCounter" class="btn">-</button>
-      <span class="counter">{{ counterData.count }}</span>
-      <button :disabled="isButtonDisabled" @click="increaseCounter" class="btn">+</button>
-    </div>
-    <div class="edit">
-      <h4>Edit counter title:</h4>
-      <input type="text" v-model="counterData.title" v-autofocus />
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .home {

@@ -1,3 +1,18 @@
+<template>
+  <div class="post-details">
+    <h1>Post Details</h1>
+    <p>Display the details of a post with the ID {{ $route.params.id }}</p>
+    <div class="buttons">
+      <button @click="goHome">Go Home</button>
+      <button @click="goToPost3">Go to Post 3</button>
+      <button @click="showPostId">Show Post ID</button>
+    </div>
+    <div class="backWrapper">
+      <RouterLink class="back" to="/post-list">&lt; Back</RouterLink>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
 
@@ -18,21 +33,6 @@ const showPostId = () => {
   alert('The post ID is ' + route.params.id)
 }
 </script>
-
-<template>
-  <div class="post-details">
-    <h1>Post Details</h1>
-    <p>Display the details of a post with the ID {{ $route.params.id }}</p>
-    <div class="buttons">
-      <button @click="goHome">Go Home</button>
-      <button @click="goToPost3">Go to Post 3</button>
-      <button @click="showPostId">Show Post ID</button>
-    </div>
-    <div class="backWrapper">
-      <RouterLink class="back" to="/post-list">&lt; Back</RouterLink>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .post-details {

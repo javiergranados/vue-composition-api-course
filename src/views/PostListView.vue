@@ -1,13 +1,3 @@
-<script setup>
-import { ref } from 'vue'
-
-const posts = ref([
-  { id: 1, title: 'Post 1' },
-  { id: 2, title: 'Post 2' },
-  { id: 3, title: 'Post 3' }
-])
-</script>
-
 <template>
   <div class="post-list">
     <h1>Post List</h1>
@@ -18,6 +8,16 @@ const posts = ref([
     </ul>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const posts = ref([
+  { id: 1, title: 'Post 1' },
+  { id: 2, title: 'Post 2' },
+  { id: 3, title: 'Post 3' }
+])
+</script>
 
 <style scoped>
 .post-list {

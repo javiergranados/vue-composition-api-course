@@ -1,3 +1,10 @@
+<template>
+  <div class="about">
+    <h1 ref="titleRef">About</h1>
+    <textarea v-autofocus/>
+  </div>
+</template>
+
 <script setup>
 import { onMounted, ref } from 'vue'
 import { vAutofocus } from '../directives'
@@ -8,13 +15,6 @@ onMounted(() => {
   titleRef.value.classList.add('title')
 })
 </script>
-
-<template>
-  <div class="about">
-    <h1 ref="titleRef">About</h1>
-    <textarea v-autofocus></textarea>
-  </div>
-</template>
 
 <style scoped>
 .about {

@@ -1,16 +1,16 @@
+<template>
+  <div class="modal" v-if="showModal">
+    <slot name="title">Modal Title</slot>
+    <slot/>
+    <button @click="$emit('closeModal')">Close</button>
+  </div>
+</template>
+
 <script setup>
 defineProps({
   showModal: Boolean
 })
 </script>
-
-<template>
-  <div class="modal" v-if="showModal">
-    <slot name="title">Modal Title</slot>
-    <slot></slot>
-    <button @click="$emit('closeModal')">Close</button>
-  </div>
-</template>
 
 <style scoped>
 .modal {
