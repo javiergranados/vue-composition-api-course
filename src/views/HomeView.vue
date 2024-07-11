@@ -1,5 +1,10 @@
 <template>
   <div class="home">
+    <div class="network">
+      Network Status:
+      <span style="color: green" v-if="isOnline">Online</span>
+      <span v-else style="color: red">Offline</span>
+    </div>
     <h3>My Counter: {{ counterData.title }}</h3>
     <div>
       <button :disabled="isButtonDisabled" @click="decreaseCounter" class="btn">-</button>
@@ -16,11 +21,22 @@
 <script setup>
 import { vAutofocus } from '../directives'
 import { useCounter } from '../composables'
+import { useOnline } from '@vueuse/core'
+
+const isOnline = useOnline()
 
 const { counterData, isButtonDisabled, decreaseCounter, increaseCounter } = useCounter()
 </script>
 
 <style scoped>
+.network {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background-color: beige;
+  border-radius: 5px;
+}
 .home {
   text-align: center;
   padding: 20px;
