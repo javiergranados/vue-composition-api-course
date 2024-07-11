@@ -14,35 +14,10 @@
 </template>
 
 <script setup>
-import { nextTick, reactive, ref } from 'vue'
 import { vAutofocus } from '../directives'
+import { useCounter } from '../composables'
 
-const counterData = reactive({
-  count: 0,
-  title: 'Example'
-})
-
-const isButtonDisabled = ref(false)
-
-const decreaseCounter = async () => {
-  isButtonDisabled.value = true
-  counterData.count--
-
-  await nextTick()
-  setTimeout(() => {
-    isButtonDisabled.value = false
-  }, 300)
-}
-
-const increaseCounter = async () => {
-  isButtonDisabled.value = true
-  counterData.count++
-
-  await nextTick()
-  setTimeout(() => {
-    isButtonDisabled.value = false
-  }, 300)
-}
+const { counterData, isButtonDisabled, decreaseCounter, increaseCounter } = useCounter()
 </script>
 
 <style scoped>
