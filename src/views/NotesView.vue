@@ -2,37 +2,25 @@
 import { v4 as uuidv4 } from 'uuid'
 import { ref } from 'vue'
 import Note from '@ui/Note.vue'
+import { useNoteStore } from '@/stores/notes'
 
-const notes = ref([
-  {
-    id: 'id1',
-    content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ipsa commodi sint ut ullam culpa nulla molestiae sunt quia qui maxime, enim quasi officiis aperiam fugit, corrupti omnis, eaque animi.',
-  },
-  {
-    id: 'id2',
-    content: 'This is a shorter note! Woo!',
-  },
-])
+const noteStore = useNoteStore()
 
-const newNote = ref('')
-const newNoteRef = ref<HTMLInputElement | null>(null)
+const note = ref('')
+const noteRef = ref<HTMLInputElement | null>(null)
 
 const addNote = () => {
-  let note = {
+  noteStore.addNote({
     id: uuidv4(),
-    content: newNote.value,
-  }
+    content: note.value,
+  })
 
-  notes.value.unshift(note)
-  newNote.value = ''
-  newNoteRef.value?.focus()
+  note.value = ''
+  noteRef.value?.focus()
 }
 
 const deleteNote = (idToDelete: string) => {
-  notes.value = notes.value.filter((note) => {
-    return note.id !== idToDelete
-  })
+  noteStore.deleteNote(idToDelete)
 }
 </script>
 
@@ -41,8 +29,8 @@ const deleteNote = (idToDelete: string) => {
     <div class="field">
       <div class="control">
         <textarea
-          ref="newNoteRef"
-          v-model="newNote"
+          ref="noteRef"
+          v-model="note"
           class="textarea"
           placeholder="Write a new note..."
         />
@@ -51,7 +39,7 @@ const deleteNote = (idToDelete: string) => {
     <div class="field is-grouped is-grouped-right">
       <div class="control">
         <button
-          :disabled="!newNote"
+          :disabled="!note"
           class="button is-link has-background-success"
           @click.prevent="addNote"
         >
@@ -61,9 +49,9 @@ const deleteNote = (idToDelete: string) => {
     </div>
   </div>
   <Note
-    v-for="note in notes"
-    :key="note.id"
-    :note="note"
+    v-for="n in noteStore.notes"
+    :key="n.id"
+    :note="n"
     @delete-note="deleteNote"
   />
 </template>
