@@ -1,43 +1,69 @@
+<script setup lang="ts">
+import { v4 as uuidv4 } from 'uuid'
+import { ref } from 'vue'
+import Note from '@ui/Note.vue'
+
+const notes = ref([
+  {
+    id: 'id1',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ipsa commodi sint ut ullam culpa nulla molestiae sunt quia qui maxime, enim quasi officiis aperiam fugit, corrupti omnis, eaque animi.',
+  },
+  {
+    id: 'id2',
+    content: 'This is a shorter note! Woo!',
+  },
+])
+
+const newNote = ref('')
+const newNoteRef = ref<HTMLInputElement | null>(null)
+
+const addNote = () => {
+  let note = {
+    id: uuidv4(),
+    content: newNote.value,
+  }
+
+  notes.value.unshift(note)
+  newNote.value = ''
+  newNoteRef.value?.focus()
+}
+
+const deleteNote = (idToDelete: string) => {
+  notes.value = notes.value.filter((note) => {
+    return note.id !== idToDelete
+  })
+}
+</script>
+
 <template>
-  <div class="notes">
-    <div class="card has-background-success-on-scheme p-4">
-      <div class="field">
-        <div class="control">
-          <textarea
-            class="textarea"
-            placeholder="Write a new note..."
-          />
-        </div>
-      </div>
-      <div class="field is-grouped is-grouped-right">
-        <div class="control">
-          <button class="button is-link has-background-success">Add</button>
-        </div>
+  <div class="card has-background-success-on-scheme p-4">
+    <div class="field">
+      <div class="control">
+        <textarea
+          ref="newNoteRef"
+          v-model="newNote"
+          class="textarea"
+          placeholder="Write a new note..."
+        />
       </div>
     </div>
-    <div
-      v-for="i in 3"
-      :key="i"
-      class="card"
-    >
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-          iaculis mauris.
-        </div>
+    <div class="field is-grouped is-grouped-right">
+      <div class="control">
+        <button
+          :disabled="!newNote"
+          class="button is-link has-background-success"
+          @click.prevent="addNote"
+        >
+          Add
+        </button>
       </div>
-      <footer class="card-footer">
-        <a
-          href="#"
-          class="card-footer-item"
-          >Edit</a
-        >
-        <a
-          href="#"
-          class="card-footer-item"
-          >Delete</a
-        >
-      </footer>
     </div>
   </div>
+  <Note
+    v-for="note in notes"
+    :key="note.id"
+    :note="note"
+    @delete-note="deleteNote"
+  />
 </template>
