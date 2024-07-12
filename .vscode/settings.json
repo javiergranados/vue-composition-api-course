@@ -6,4 +6,7 @@
   "editor.quickSuggestions": {
     "strings": true
   },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

@@ -1,15 +1,10 @@
+<script setup lang="ts">
+import Navbar from '@ui/Navbar.vue'
+</script>
+
 <template>
-  <nav>
-    <RouterLink
-      to="/"
-      class="button"
-      >Notes</RouterLink
-    >
-    <RouterLink
-      to="/stats"
-      class="button"
-      >Stats</RouterLink
-    >
-  </nav>
-  <RouterView />
+  <Navbar />
+  <div class="container is-max-desktop px-2 py-4">
+    <RouterView />
+  </div>
 </template>
