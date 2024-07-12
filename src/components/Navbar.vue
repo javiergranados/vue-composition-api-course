@@ -35,7 +35,7 @@ const showMobileNav = ref(false)
       >
         <div class="navbar-end">
           <RouterLink
-            to="/notes"
+            to="/"
             class="navbar-item has-text-white"
             active-class="is-active"
             >Notes</RouterLink
