@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NoteDetailsView from '@views/NoteDetailsView.vue'
 import NotesView from '@views/NotesView.vue'
-import StatsView from '@/views/StatsView.vue'
+import StatsView from '@views/StatsView.vue'
 
 const routes = [
-  { path: '/', name: 'notes', component: NotesView },
+  { path: '/', redirect: '/notes' },
+  { path: '/notes', name: 'notes', component: NotesView },
+  { path: '/notes/:id', name: 'noteDetails', component: NoteDetailsView },
   { path: '/stats', name: 'stats', component: StatsView },
 ]
 

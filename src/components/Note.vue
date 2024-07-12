@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { Note } from '@/lib/definitions'
 
 const props = defineProps<{
@@ -32,11 +33,12 @@ const handleDelete = () => {
       </div>
     </div>
     <footer class="card-footer">
-      <a
-        href="#"
+      <RouterLink
+        :to="{ name: 'noteDetails', params: { id: note.id } }"
         class="card-footer-item"
-        >Edit</a
       >
+        Edit
+      </RouterLink>
       <a
         href="#"
         class="card-footer-item"

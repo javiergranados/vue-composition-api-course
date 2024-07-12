@@ -1,5 +1,3 @@
 <template>
-  <div class="stats">
-    <h1>Stats</h1>
-  </div>
+  <h1>Stats</h1>
 </template>
