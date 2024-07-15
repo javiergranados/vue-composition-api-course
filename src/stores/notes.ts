@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { Note } from '@/lib/definitions'
 
 export const useNoteStore = defineStore('notes', () => {
@@ -14,6 +14,12 @@ export const useNoteStore = defineStore('notes', () => {
       content: 'This is a shorter note! Woo!',
     },
   ])
+
+  const totalNotesCount = computed(() => notes.value.length)
+
+  const totalCharactersCount = computed(() =>
+    notes.value.reduce((acc, note) => acc + note.content.length, 0)
+  )
 
   function addNote(note: Note) {
     notes.value.unshift(note)
@@ -37,5 +43,13 @@ export const useNoteStore = defineStore('notes', () => {
     }
   }
 
-  return { notes, addNote, deleteNote, findNote, editNote }
+  return {
+    notes,
+    totalNotesCount,
+    totalCharactersCount,
+    addNote,
+    deleteNote,
+    findNote,
+    editNote,
+  }
 })

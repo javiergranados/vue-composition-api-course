@@ -38,12 +38,14 @@ const showMobileNav = ref(false)
             to="/"
             class="navbar-item has-text-white"
             active-class="is-active"
+            @click="showMobileNav = false"
             >Notes</RouterLink
           >
           <RouterLink
             to="/stats"
             class="navbar-item has-text-white"
             active-class="is-active"
+            @click="showMobileNav = false"
             >Stats</RouterLink
           >
         </div>
