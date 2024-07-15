@@ -72,7 +72,7 @@ onUnmounted(() => {
           Cancel
         </button>
         <button
-          class="button is-danger"
+          class="button is-danger has-text-white"
           @click.prevent="handleDelete"
         >
           Yes, delete

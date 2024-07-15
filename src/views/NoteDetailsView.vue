@@ -31,16 +31,15 @@ function cancel() {
     :max-length="150"
     placeholder="Edit the note..."
   >
-    <template #buttons>
+    <template #buttons="{ maxLengthReached }">
       <button
-        class="button is-link is-light mr-2"
+        class="button mr-2"
         @click.prevent="cancel"
       >
         Cancel
       </button>
-
       <button
-        :disabled="!noteContent"
+        :disabled="!noteContent || maxLengthReached"
         class="button is-link has-background-success"
         @click.prevent="editNote"
       >
