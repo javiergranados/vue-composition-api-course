@@ -28,6 +28,7 @@ function cancel() {
     v-if="note"
     v-model="noteContent"
     label="Edit note"
+    :max-length="150"
     placeholder="Edit the note..."
   >
     <template #buttons>

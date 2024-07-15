@@ -29,7 +29,7 @@ const deleteNote = (idToDelete: string) => {
   <EditionNote
     ref="editionNoteRef"
     v-model="noteContent"
-    :max-length="100"
+    :max-length="150"
   >
     <template #buttons="{ maxLengthReached }">
       <button
