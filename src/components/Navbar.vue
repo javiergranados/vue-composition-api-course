@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 
 const showMobileNav = ref(false)
+const navbarBurgerRef = ref(null)
+const navbarMenuRef = ref(null)
+
+onClickOutside(
+  navbarMenuRef,
+  () => {
+    showMobileNav.value = false
+  },
+  { ignore: [navbarBurgerRef] }
+)
 </script>
 
 <template>
@@ -16,6 +27,7 @@ const showMobileNav = ref(false)
           Noteballs
         </div>
         <a
+          ref="navbarBurgerRef"
           class="navbar-burger has-text-white"
           :class="{ 'is-active': showMobileNav }"
           aria-expanded="false"
@@ -30,6 +42,7 @@ const showMobileNav = ref(false)
         </a>
       </div>
       <div
+        ref="navbarMenuRef"
         class="navbar-menu"
         :class="{ 'is-active': showMobileNav }"
       >

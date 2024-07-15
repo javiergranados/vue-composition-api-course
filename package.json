@@ -16,6 +16,7 @@
     "*": "prettier -c src --write --ignore-unknown"
   },
   "dependencies": {
+    "@vueuse/core": "^10.11.0",
     "bulma": "^1.0.1",
     "pinia": "^2.1.7",
     "uuid": "^10.0.0",
