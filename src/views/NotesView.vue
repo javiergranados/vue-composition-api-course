@@ -19,10 +19,6 @@ const addNote = () => {
   noteContent.value = ''
   editionNoteRef.value?.focusTextarea()
 }
-
-const deleteNote = (idToDelete: string) => {
-  noteStore.deleteNote(idToDelete)
-}
 </script>
 
 <template>
@@ -45,6 +41,5 @@ const deleteNote = (idToDelete: string) => {
     v-for="n in noteStore.notes"
     :key="n.id"
     :note="n"
-    @delete-note="deleteNote"
   />
 </template>

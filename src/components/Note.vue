@@ -1,25 +1,20 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Note } from '@/lib/definitions'
+import DeleteNote from './DeleteNote.vue'
 
 const props = defineProps<{
   note: Note
 }>()
 
-const emit = defineEmits<{
-  (e: 'deleteNote', id: string): void
-}>()
+const showDeleteNoteModal = ref(false)
 
 const characterLength = computed(() => {
   let length = props.note.content.length
   let description = length > 1 ? 'characters' : 'character'
   return `${length} ${description}`
 })
-
-const handleDelete = () => {
-  emit('deleteNote', props.note.id)
-}
 </script>
 
 <template>
@@ -42,9 +37,15 @@ const handleDelete = () => {
       <a
         href="#"
         class="card-footer-item"
-        @click.prevent="handleDelete"
+        @click.prevent="showDeleteNoteModal = true"
         >Delete</a
       >
     </footer>
   </div>
+  <Teleport to="body">
+    <DeleteNote
+      v-model="showDeleteNoteModal"
+      :note-id="note.id"
+    />
+  </Teleport>
 </template>
