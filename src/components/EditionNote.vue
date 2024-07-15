@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useWatchCharacters } from '@/directives/useWatchCharacters'
 
-defineProps({
+const props = defineProps({
   label: {
     type: String,
     required: false,
@@ -11,6 +12,11 @@ defineProps({
     type: String,
     required: false,
     default: 'Write a new note...',
+  },
+  maxLength: {
+    type: Number,
+    required: false,
+    default: 100,
   },
 })
 
@@ -24,6 +30,8 @@ const model = defineModel({
   type: String,
   required: true,
 })
+
+const maxLengthReached = useWatchCharacters(model, props.maxLength)
 
 function focusTextarea() {
   noteRef.value?.focus()
@@ -48,9 +56,18 @@ function focusTextarea() {
         />
       </div>
     </div>
+    <label
+      v-if="maxLengthReached"
+      class="label has-text-danger"
+    >
+      Only {{ maxLength }} characters are allowed
+    </label>
     <div class="field is-grouped is-grouped-right">
       <div class="control">
-        <slot name="buttons" />
+        <slot
+          name="buttons"
+          :max-length-reached="maxLengthReached"
+        />
       </div>
     </div>
   </div>

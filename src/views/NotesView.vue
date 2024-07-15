@@ -29,10 +29,11 @@ const deleteNote = (idToDelete: string) => {
   <EditionNote
     ref="editionNoteRef"
     v-model="noteContent"
+    :max-length="100"
   >
-    <template #buttons>
+    <template #buttons="{ maxLengthReached }">
       <button
-        :disabled="!noteContent"
+        :disabled="!noteContent || maxLengthReached"
         class="button is-link has-background-success"
         @click.prevent="addNote"
       >
