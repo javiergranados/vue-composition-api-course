@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+defineProps({
+  label: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  placeholder: {
+    type: String,
+    required: false,
+    default: 'Write a new note...',
+  },
+})
+
 defineExpose({
   focusTextarea,
 })
@@ -18,14 +31,20 @@ function focusTextarea() {
 </script>
 
 <template>
-  <div class="card has-background-success-on-scheme p-4">
+  <div class="card has-background-success-on-scheme p-4 mb-5">
+    <label
+      v-if="label"
+      class="label has-text-white"
+    >
+      {{ label }}
+    </label>
     <div class="field">
       <div class="control">
         <textarea
           ref="noteRef"
           v-model="model"
           class="textarea"
-          placeholder="Write a new note..."
+          :placeholder="placeholder"
         />
       </div>
     </div>
